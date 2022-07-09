@@ -10,4 +10,9 @@ class AdminController extends Controller
     {
         return view('backend.login');
     }
+
+    function submit_login(Request $request)
+    {
+        $request->validate();
+    }
 }

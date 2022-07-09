@@ -21,3 +21,4 @@ use App\Http\Controllers\AdminController;
 
 Route::get('/', [HomeController::class, 'home']);
 Route::get('/admin/login', [AdminController::class, 'login']);
+Route::post('/admin/login', [AdminController::class, 'submit_login']);
