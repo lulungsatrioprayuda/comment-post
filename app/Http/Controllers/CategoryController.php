@@ -39,8 +39,8 @@ class CategoryController extends Controller
             'title' => 'required'
         ]);
 
-        if ($request->hasFails('cat_image')) {
-            $image = $request->file('img_src');
+        if ($request->hasFile('cat_image')) {
+            $image = $request->file('cat_image');
             $reImage = time() . '.' . $image->getClientOriginalExtension();
             $dest = public_path('/imgs');
             $image->move($dest, $reImage);
