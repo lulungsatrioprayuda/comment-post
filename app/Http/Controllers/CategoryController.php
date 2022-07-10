@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -13,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.category.index');
     }
 
     /**
@@ -23,7 +24,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.category.add');
     }
 
     /**
@@ -34,7 +35,24 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required'
+        ]);
+
+        if ($request->hasFails('cat_image')) {
+            $image = $request->file('img_src');
+            $reImage = time() . '.' . $image->getClientOriginalExtension();
+            $dest = public_path('/imgs');
+            $image->move($dest, $reImage);
+        }
+
+        $category = new Category;
+        $category->title = $request->title;
+        $category->detail = $request->detail;
+        $category->image = $reImage;
+        $category->save();
+
+        return redirect('admin/category/create')->with('success', 'Data success to added');
     }
 
     /**
