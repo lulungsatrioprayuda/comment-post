@@ -1,6 +1,6 @@
 @extends('layout')
-@section('meta_desc','use management category post')
-@section('title', 'Category page')
+@section('meta_desc',$meta_desc)
+@section('title', $title)
 @section('content')
 <div class="container-fluid">
 
