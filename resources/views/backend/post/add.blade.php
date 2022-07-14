@@ -27,7 +27,7 @@
         <p class="text-success">{{session('success')}}</p>
         @endif
 
-        <form method="post" action="{{url('admin/category')}}" enctype="multipart/form-data">
+        <form method="post" action="{{url('admin/post')}}" enctype="multipart/form-data">
           @csrf
           <table class="table table-bordered">
             <tr>
@@ -43,8 +43,16 @@
               <td><textarea name="detail" cols="30" rows="10" class="form-control"></textarea></td>
             </tr>
             <tr>
-              <th>Image</th>
-              <td><input type="file" name="cat_image" /></td>
+              <th>Tags</th>
+              <td><textarea name="tags" cols="30" rows="10" class="form-control"></textarea></td>
+            </tr>
+            <tr>
+              <th>Thumbnail</th>
+              <td><input type="file" name="post_thumbnail" /></td>
+            </tr>
+            <tr>
+              <th>Full Image</th>
+              <td><input type="file" name="post_image" /></td>
             </tr>
             <tr>
               <th>Detail</th>
@@ -59,7 +67,6 @@
         </form>
       </div>
     </div>
-    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
   </div>
 
 </div>

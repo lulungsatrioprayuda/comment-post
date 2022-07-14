@@ -44,7 +44,42 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'category' => 'required',
+            'detail' => 'required'
+        ]);
+
+        // thumbnail
+        if ($request->hasFile('post_thumb')) {
+            $image = $request->file('post_thumb');
+            $reThumbImage = time() . '.' . $image->getClientOriginalExtension();
+            $dest = public_path('/imgs');
+            $image->move($dest, $reThumbImage);
+        } else {
+            $reThumbImage = 'na';
+        }
+
+
+        // full image
+        if ($request->hasFile('post_image')) {
+            $image = $request->file('post_image');
+            $reFullImage = time() . '.' . $image->getClientOriginalExtension();
+            $dest = public_path('/imgs');
+            $image->move($dest, $reFullImage);
+        } else {
+            $reFullImage = 'na';
+        }
+
+        $post = new Post;
+        $post->title = $request->title;
+        $post->detail = $request->detail;
+        $post->tags = $request->tags;
+        $post->thumb = $reThumbImage;
+        $post->full_img = $reFullImage;
+        $post->save();
+
+        return redirect('admin/post/create')->with('success', 'Data success to added');
     }
 
     /**
