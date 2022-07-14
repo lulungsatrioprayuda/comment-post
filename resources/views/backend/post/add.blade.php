@@ -39,8 +39,11 @@
                 </select></td>
             </tr>
             <tr>
-              <th>Detail</th>
-              <td><textarea name="detail" cols="30" rows="10" class="form-control"></textarea></td>
+              <th>title</th>
+              <td><input type="text" class="form-control" name="title"></td>
+            </tr>
+            <th>Detail</th>
+            <td><textarea name="detail" cols="30" rows="10" class="form-control"></textarea></td>
             </tr>
             <tr>
               <th>Tags</th>

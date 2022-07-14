@@ -72,6 +72,8 @@ class PostController extends Controller
         }
 
         $post = new Post;
+        $post->user_id = 0;
+        $post->cat_id = $request->category;
         $post->title = $request->title;
         $post->detail = $request->detail;
         $post->tags = $request->tags;

@@ -14,7 +14,7 @@
   <div class="card mb-3">
     <div class="card-header">
       <i class="fas fa-table"></i> Categories
-      <a href="{{url('admin/category/create')}}" class="float-right btn btn-sm btn-dark">Add Data</a>
+      <a href="{{url('admin/post/create')}}" class="float-right btn btn-sm btn-dark">Add Data</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -28,17 +28,18 @@
             </tr>
           </thead>
           <tbody>
-              @foreach($data as $post)
-              <tr>
-                <td>{{$post->id}}</td>
-                <td>{{$post->title}}</td>
-                <td><img src="{{ asset('imgs').'/'.$post->thumb }}" width="100" /></td>
-                <td>
-                  <a class="btn btn-info btn-sm" href="{{url('admin/post/'.$post->id.'/edit')}}">Update</a>
-                  <a onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm" href="{{url('admin/post/'.$post->id.'/delete')}}">Delete</a>
-                </td>
-              </tr>
-              @endforeach
+            @foreach($data as $post)
+            <tr>
+              <td>{{$post->id}}</td>
+              <td>{{$post->title}}</td>
+              <td><img src="{{ asset('imgs').'/'.$post->thumb }}" width="100" /></td>
+              <td>
+                <a class="btn btn-info btn-sm" href="{{url('admin/post/'.$post->id.'/edit')}}">Update</a>
+                <a onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm"
+                  href="{{url('admin/post/'.$post->id.'/delete')}}">Delete</a>
+              </td>
+            </tr>
+            @endforeach
           </tbody>
         </table>
       </div>
