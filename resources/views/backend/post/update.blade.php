@@ -1,3 +1,4 @@
+
 @extends('layout')
 @section('content')
 <div class="container-fluid">
@@ -21,9 +22,9 @@
       <div class="table-responsive">
 
         @if($errors)
-        @foreach($errors->all() as $error)
-        <p class="text-danger">{{$error}}</p>
-        @endforeach
+          @foreach($errors->all() as $error)
+            <p class="text-danger">{{$error}}</p>
+          @endforeach
         @endif
 
         @if(Session::has('success'))
@@ -34,27 +35,27 @@
           @csrf
           @method('put')
           <table class="table table-bordered">
-            <tr>
-              <th>Title</th>
-              <td><input type="text" value="{{$data->title}}" name="title" class="form-control" /></td>
-            </tr>
-            <tr>
-              <th>Detail</th>
-              <td><input type="text" value="{{$data->detail}}" name="detail" class="form-control" /></td>
-            </tr>
-            <tr>
-              <th>Image</th>
-              <td>
-                <p class="my-2"><img width="80" src="{{asset('imgs')}}/{{$data->image}}" /></p>
-                <input type="hidden" value="{{$data->image}}" name="cat_images" />
-                <input type="file" name="cat_image" />
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2">
-                <input type="submit" class="btn btn-primary" />
-              </td>
-            </tr>
+              <tr>
+                  <th>Title</th>
+                  <td><input type="text" value="{{$data->title}}" name="title" class="form-control" /></td>
+              </tr>
+              <tr>
+                  <th>Detail</th>
+                  <td><input type="text" value="{{$data->detail}}" name="detail" class="form-control" /></td>
+              </tr>
+              <tr>
+                  <th>Image</th>
+                  <td>
+                    <p class="my-2"><img width="80" src="{{asset('imgs')}}/{{$data->image}}" /></p>
+                    <input type="hidden" value="{{$data->image}}" name="cat_images" />
+                    <input type="file" name="cat_image" />
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="2">
+                      <input type="submit" class="btn btn-primary" />
+                  </td>
+              </tr>
           </table>
         </form>
       </div>

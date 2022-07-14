@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -13,7 +15,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $data = Post::all();
+        return view('backend.post.index', [
+            'data' => $data,
+            'title' => 'Post Page',
+            'meta_desc' => 'Page for update the posting some content'
+        ]);
     }
 
     /**
@@ -23,7 +30,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $cate = Category::all();
+        return view('backend.post.add', [
+            'cats' => $cate
+        ]);
     }
 
     /**

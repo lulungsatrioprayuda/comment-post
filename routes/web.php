@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
 use App\Models\Category;
 
 /*
@@ -17,13 +18,15 @@ use App\Models\Category;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 Route::get('/', [HomeController::class, 'home']);
+// admin page
 Route::get('/admin/login', [AdminController::class, 'login']);
 Route::post('/admin/login', [AdminController::class, 'submit_login']);
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
+// category
 Route::resource('/admin/category', CategoryController::class);
 Route::get('admin/category/{id}/delete', [CategoryController::class, 'destroy']);
+// Post
+Route::resource('/admin/post', PostController::class);
+Route::get('admin/post/{id}/delete', [PostController::class, 'destroy']);
