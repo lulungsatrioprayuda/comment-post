@@ -103,7 +103,12 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cats = Category::all();
+        $data = Post::find($id);
+        return view('backend.post.update', [
+            'cats' => $cats,
+            'data' => $data
+        ]);
     }
 
     /**
@@ -115,7 +120,44 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'category' => 'required',
+            'detail' => 'required'
+        ]);
+
+        // thumbnail
+        if ($request->hasFile('post_thumbnail')) {
+            $image1 = $request->file('post_thumbnail');
+            $reThumbImage = time() . '.' . $image1->getClientOriginalExtension();
+            $dest1 = public_path('/imgs/thumb');
+            $image1->move($dest1, $reThumbImage);
+        } else {
+            $reThumbImage = $request->post_thumbnail;
+        }
+
+
+        // full image
+        if ($request->hasFile('post_image')) {
+            $image2 = $request->file('post_image');
+            $reFullImage = time() . '.' . $image2->getClientOriginalExtension();
+            $dest2 = public_path('/imgs/full');
+            $image2->move($dest2, $reFullImage);
+        } else {
+            $reFullImage = $request->post_image;
+        }
+
+        $post = Post::find($id);
+        $post->user_id = 0;
+        $post->cat_id = $request->category;
+        $post->title = $request->title;
+        $post->detail = $request->detail;
+        $post->tags = $request->tags;
+        $post->thumb = $reThumbImage;
+        $post->full_img = $reFullImage;
+        $post->save();
+
+        return redirect('admin/post/' . $id . '/edit')->with('success', 'Data has been updated');
     }
 
     /**
@@ -126,6 +168,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::where('id', $id)->delete();
+        return redirect('admin/post');
     }
 }
