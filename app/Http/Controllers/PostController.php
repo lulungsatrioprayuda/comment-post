@@ -54,7 +54,7 @@ class PostController extends Controller
         if ($request->hasFile('post_thumbnail')) {
             $image1 = $request->file('post_thumbnail');
             $reThumbImage = time() . '.' . $image1->getClientOriginalExtension();
-            $dest1 = public_path('/imgs');
+            $dest1 = public_path('/imgs/thumb');
             $image1->move($dest1, $reThumbImage);
         } else {
             $reThumbImage = 'na';
@@ -65,7 +65,7 @@ class PostController extends Controller
         if ($request->hasFile('post_image')) {
             $image2 = $request->file('post_image');
             $reFullImage = time() . '.' . $image2->getClientOriginalExtension();
-            $dest2 = public_path('/imgs');
+            $dest2 = public_path('/imgs/full');
             $image2->move($dest2, $reFullImage);
         } else {
             $reFullImage = 'na';
