@@ -51,11 +51,11 @@ class PostController extends Controller
         ]);
 
         // thumbnail
-        if ($request->hasFile('post_thumb')) {
-            $image = $request->file('post_thumb');
-            $reThumbImage = time() . '.' . $image->getClientOriginalExtension();
-            $dest = public_path('/imgs');
-            $image->move($dest, $reThumbImage);
+        if ($request->hasFile('post_thumbnail')) {
+            $image1 = $request->file('post_thumbnail');
+            $reThumbImage = time() . '.' . $image1->getClientOriginalExtension();
+            $dest1 = public_path('/imgs');
+            $image1->move($dest1, $reThumbImage);
         } else {
             $reThumbImage = 'na';
         }
@@ -63,10 +63,10 @@ class PostController extends Controller
 
         // full image
         if ($request->hasFile('post_image')) {
-            $image = $request->file('post_image');
-            $reFullImage = time() . '.' . $image->getClientOriginalExtension();
-            $dest = public_path('/imgs');
-            $image->move($dest, $reFullImage);
+            $image2 = $request->file('post_image');
+            $reFullImage = time() . '.' . $image2->getClientOriginalExtension();
+            $dest2 = public_path('/imgs');
+            $image2->move($dest2, $reFullImage);
         } else {
             $reFullImage = 'na';
         }

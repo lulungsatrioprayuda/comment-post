@@ -58,10 +58,6 @@
               <td><input type="file" name="post_image" /></td>
             </tr>
             <tr>
-              <th>Detail</th>
-              <td><textarea name="detail" cols="30" rows="10" class="form-control"></textarea></td>
-            </tr>
-            <tr>
               <td colspan="2">
                 <input type="submit" class="btn btn-primary" />
               </td>

@@ -23,7 +23,8 @@
             <tr>
               <th>#</th>
               <th>Title</th>
-              <th>Image</th>
+              <th>Thumb</th>
+              <th>Full Image</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -33,6 +34,7 @@
               <td>{{$post->id}}</td>
               <td>{{$post->title}}</td>
               <td><img src="{{ asset('imgs').'/'.$post->thumb }}" width="100" /></td>
+              <td><img src="{{ asset('imgs').'/'.$post->full_img }}" width="100" /></td>
               <td>
                 <a class="btn btn-info btn-sm" href="{{url('admin/post/'.$post->id.'/edit')}}">Update</a>
                 <a onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm"
