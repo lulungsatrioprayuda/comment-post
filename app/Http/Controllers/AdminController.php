@@ -24,6 +24,12 @@ class AdminController extends Controller
             'password' => $request->password
         ])->count();
         if ($userCheck) {
+            $adminData =
+                Admin::where([
+                    'username' => $request->username,
+                    'password' => $request->password
+                ])->first();
+            session(['adminData' => $adminData]);
             return redirect('admin/dashboard');
         } else {
             return redirect('admin/login')->with('error', 'invalid username or password');
@@ -33,5 +39,11 @@ class AdminController extends Controller
     function dashboard()
     {
         return view('backend.dashboard');
+    }
+
+    function logout()
+    {
+        session()->forget(['adminData']);
+        return redirect('admin/login');
     }
 }
