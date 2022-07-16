@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SettingController;
 use App\Models\Category;
 
 /*
@@ -31,3 +32,5 @@ Route::get('admin/category/{id}/delete', [CategoryController::class, 'destroy'])
 // Post
 Route::resource('/admin/post', PostController::class);
 Route::get('admin/post/{id}/delete', [PostController::class, 'destroy']);
+// settings
+Route::get('/admin/setting', [SettingController::class, 'index']);
