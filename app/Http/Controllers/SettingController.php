@@ -8,6 +8,9 @@ class SettingController extends Controller
 {
     function index()
     {
-        return view('backend.setting.index');
+        return view('backend.setting.index', [
+            'title' => 'Post',
+            'meta_desc' => 'Post Page',
+        ]);
     }
 }
