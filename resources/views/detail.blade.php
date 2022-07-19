@@ -10,6 +10,13 @@
                 {{$detail->detail}}
             </div>
         </div>
+        <div class="card mb-5">
+            <h5 class="card-header">Add comment</h5>
+            <div class="card-body">
+                <textarea name="" id="" class="form-control"></textarea>
+                <input type="submit" class="btn btn-dark mb-2">
+            </div>
+        </div>
     </div>
 
     <div class="col-md-4">
