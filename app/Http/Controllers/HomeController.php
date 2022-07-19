@@ -18,4 +18,13 @@ class HomeController extends Controller
         }
         return view('home', ['posts' => $posts]);
     }
+
+    function detail(Request $request, $postId)
+    {
+        $detail = Post::find($postId);
+        return view(
+            'detail',
+            ['detail' => $detail]
+        );
+    }
 }
