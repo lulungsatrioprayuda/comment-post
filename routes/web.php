@@ -21,6 +21,7 @@ use App\Models\Category;
 
 
 Route::get('/', [HomeController::class, 'home']);
+Route::get('/detail/{id}', [AdminController::class, 'detail']);
 // admin page
 Route::get('/admin/login', [AdminController::class, 'login']);
 Route::post('/admin/login', [AdminController::class, 'submit_login']);
