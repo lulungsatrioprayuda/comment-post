@@ -5,7 +5,7 @@
     <div class="col-md 8">
         <div class="card">
             <h5 class="card-header">{{$detail->title}}</h5>
-            <img src="{{asset('imgs/full/'. $detail->full_img)}}" alt="{{$detail->detail}}" class="card-img-top">
+            <img src="{{asset('imgs/full/'.$detail->full_img)}}" class="card-img-top" alt="{{$detail->title}}">
             <div class="card-body">
                 {{$detail->detail}}
             </div>
@@ -17,8 +17,18 @@
                 <input type="submit" class="btn btn-dark mb-2">
             </div>
         </div>
+        {{-- load the comment --}}
+        <div class="card my-4">
+            <h5 class="card-header">Comments</h5>
+            <div class="card-body">
+                @if($detail->comments)
+                @foreach($detail->comments as $comment)
+                <p class="mb-0">{{$comment->comment}}</p>
+                @endforeach
+                @endif
+            </div>
+        </div>
     </div>
-
     <div class="col-md-4">
         <div class="card mb-4">
             <h5 class="card-header">Search</h5>
