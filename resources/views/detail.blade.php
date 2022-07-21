@@ -3,6 +3,9 @@
 @section('content')
 <div class="row">
     <div class="col-md 8">
+        @if(Session::has('success'))
+        <p class="text-success">{{session('success')}}</p>
+        @endif
         <div class="card">
             <h5 class="card-header">{{$detail->title}}</h5>
             <img src="{{asset('imgs/full/'.$detail->full_img)}}" class="card-img-top" alt="{{$detail->title}}">
@@ -14,9 +17,11 @@
         <div class="card mb-5">
             <h5 class="card-header">Add more comment </h5>
             <div class="card-body">
-                <form action="{{url('save-comment/'. Str::slug($post->title) .'/'. $detail->id)}}" method="post"></form>
-                <textarea name="" id="" class="form-control"></textarea>
-                <input type="submit" class="btn btn-dark mb-2">
+                <form method="post" action="{{url('save-comment/'. Str::slug($detail->title) .'/'. $detail->id)}}">
+                    @csrf
+                    <textarea name="comment" class="form-control"></textarea>
+                    <input type="submit" class="btn btn-dark mb-2">
+                </form>
             </div>
         </div>
         @endif
