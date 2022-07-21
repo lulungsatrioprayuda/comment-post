@@ -19,7 +19,7 @@
         </div>
         {{-- load the comment --}}
         <div class="card my-4">
-            <h5 class="card-header">Comments</h5>
+            <h5 class="card-header">Comments <span class="badge badge-success">{{count($detail->comments)}}</span></h5>
             <div class="card-body">
                 @if($detail->comments)
                 @foreach($detail->comments as $comment)

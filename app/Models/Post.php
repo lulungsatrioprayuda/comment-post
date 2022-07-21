@@ -11,6 +11,6 @@ class Post extends Model
 
     function comments()
     {
-        return $this->hasMany('App\Models\Comment');
+        return $this->hasMany('App\Models\Comment')->orderBy('id', 'desc');
     }
 }
