@@ -22,6 +22,7 @@ use App\Models\Category;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/detail/{slug}/{id}', [HomeController::class, 'detail']);
+Route::post('/save-comment/{slug}/{id}', [HomeController::class, 'save_comment']);
 // admin page
 Route::get('/admin/login', [AdminController::class, 'login']);
 Route::post('/admin/login', [AdminController::class, 'submit_login']);
