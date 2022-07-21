@@ -10,13 +10,16 @@
                 {{$detail->detail}}
             </div>
         </div>
+        @auth
         <div class="card mb-5">
             <h5 class="card-header">Add more comment </h5>
             <div class="card-body">
+                <form action="{{url('save-comment/'. Str::slug($post->title) .'/'. $detail->id)}}" method="post"></form>
                 <textarea name="" id="" class="form-control"></textarea>
                 <input type="submit" class="btn btn-dark mb-2">
             </div>
         </div>
+        @endif
         {{-- load the comment --}}
         <div class="card my-4">
             <h5 class="card-header">Comments <span class="badge badge-success">{{count($detail->comments)}}</span></h5>

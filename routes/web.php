@@ -20,7 +20,7 @@ use App\Models\Category;
 */
 
 
-Route::get('/', [HomeController::class, 'home']);
+Route::get('/', [HomeController::class, 'index']);
 Route::get('/detail/{slug}/{id}', [HomeController::class, 'detail']);
 // admin page
 Route::get('/admin/login', [AdminController::class, 'login']);
