@@ -23,7 +23,15 @@
             <div class="card-body">
                 @if($detail->comments)
                 @foreach($detail->comments as $comment)
-                <p class="mb-0">{{$comment->comment}}</p>
+                <blockquote class="blockquote">
+                    <p class="mb-0">{{$comment->comment}}</p>
+                    @if($comment->user_id==0)
+                    <footer class="blockquote-footer">Admin</footer>
+                    @else
+                    <footer class="blockquote-footer">{{$comment->user->name}}</footer>
+                    @endif
+                </blockquote>
+                <hr />
                 @endforeach
                 @endif
             </div>
