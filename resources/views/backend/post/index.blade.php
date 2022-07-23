@@ -23,6 +23,7 @@
             <tr>
               <th>#</th>
               <th>Title</th>
+              <th>Category</th>
               <th>Thumb</th>
               <th>Full Image</th>
               <th>Action</th>
@@ -33,6 +34,7 @@
             <tr>
               <td>{{$post->id}}</td>
               <td>{{$post->title}}</td>
+              <td>{{$post->category->title}}</td>
               <td><img src="{{ asset('imgs/thumb').'/'.$post->thumb }}" width="100" /></td>
               <td><img src="{{ asset('imgs/full').'/'.$post->full_img }}" width="100" /></td>
               <td>

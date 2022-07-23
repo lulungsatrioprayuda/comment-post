@@ -32,7 +32,7 @@ class HomeController extends Controller
 
     function all_category()
     {
-        $categories = Category::orderBy('id', 'desc')->get();
+        $categories = Category::orderBy('id', 'desc')->paginate(1);
         return view(
             'categories',
             [
@@ -51,6 +51,15 @@ class HomeController extends Controller
                 'posts' => $posts,
                 'category' => $category
             ]
+        );
+    }
+
+    function category_post(Request $request,  $cat_slug, $cat_id)
+    {
+        $posts =  Post::where('cat_id', $cat_id)->orderBy('cat_id', $cat_id)->orderBy('id', 'desc')->paginate(1);
+        return view(
+            'category',
+            ['posts' => $posts]
         );
     }
 

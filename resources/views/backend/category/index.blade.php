@@ -28,17 +28,18 @@
             </tr>
           </thead>
           <tbody>
-              @foreach($data as $cat)
-              <tr>
-                <td>{{$cat->id}}</td>
-                <td>{{$cat->title}}</td>
-                <td><img src="{{ asset('imgs').'/'.$cat->image }}" width="100" /></td>
-                <td>
-                  <a class="btn btn-info btn-sm" href="{{url('admin/category/'.$cat->id.'/edit')}}">Update</a>
-                  <a onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm" href="{{url('admin/category/'.$cat->id.'/delete')}}">Delete</a>
-                </td>
-              </tr>
-              @endforeach
+            @foreach($data as $cat)
+            <tr>
+              <td>{{$cat->id}}</td>
+              <td>{{$cat->title}}</td>
+              <td><img src="{{ asset('imgs').'/'.$cat->image }}" width="100" /></td>
+              <td>
+                <a class="btn btn-info btn-sm" href="{{url('admin/category/'.$cat->id.'/edit')}}">Update</a>
+                <a onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm"
+                  href="{{url('admin/category/'.$cat->id.'/delete')}}">Delete</a>
+              </td>
+            </tr>
+            @endforeach
           </tbody>
         </table>
       </div>
