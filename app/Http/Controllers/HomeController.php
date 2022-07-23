@@ -32,7 +32,7 @@ class HomeController extends Controller
 
     function all_category()
     {
-        $categories = Category::orderBy('id', 'desc')->paginate(1);
+        $categories = Category::orderBy('id', 'desc')->paginate(5);
         return view(
             'categories',
             [
@@ -44,7 +44,7 @@ class HomeController extends Controller
     function category(Request $request, $cat_slug, $cat_id)
     {
         $category = Category::find($cat_id);
-        $posts =  Post::where('cat_id', $cat_id)->orderBy('id', 'desc')->paginate(1);
+        $posts =  Post::where('cat_id', $cat_id)->orderBy('id', 'desc')->paginate(2);
         return view(
             'category',
             [
@@ -75,5 +75,56 @@ class HomeController extends Controller
         $data->save();
 
         return redirect('detail/' . $slug . '/' . $id)->with('success', 'Comment has ben submited!!');
+    }
+
+    function save_post_form()
+    {
+        $cats = Category::all();
+        return view('save-post-form', [
+            'cats' => $cats
+        ]);
+    }
+
+    function save_post_data(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'category' => 'required',
+            'detail' => 'required'
+        ]);
+
+        // thumbnail
+        if ($request->hasFile('post_thumbnail')) {
+            $image1 = $request->file('post_thumbnail');
+            $reThumbImage = time() . '.' . $image1->getClientOriginalExtension();
+            $dest1 = public_path('/imgs/thumb');
+            $image1->move($dest1, $reThumbImage);
+        } else {
+            $reThumbImage = $request->post_thumbnail;
+        }
+
+
+        // full image
+        if ($request->hasFile('post_image')) {
+            $image2 = $request->file('post_image');
+            $reFullImage = time() . '.' . $image2->getClientOriginalExtension();
+            $dest2 = public_path('/imgs/full');
+            $image2->move($dest2, $reFullImage);
+        } else {
+            $reFullImage = $request->post_image;
+        }
+
+        $post = new Post;
+        $post->user_id = $request->user()->id;
+        $post->cat_id = $request->category;
+        $post->title = $request->title;
+        $post->detail = $request->detail;
+        $post->tags = $request->tags;
+        $post->status = 1;
+        $post->thumb = $reThumbImage;
+        $post->full_img = $reFullImage;
+        $post->save();
+
+        return redirect('save-post-form')->with('success', 'Post has been updated');
     }
 }
