@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use App\Models\Comment;
+use App\Models\Post;
 
 class AdminController extends Controller
 {
@@ -38,7 +40,30 @@ class AdminController extends Controller
 
     function dashboard()
     {
-        return view('backend.dashboard');
+        $posts =  Post::orderBy('id', 'desc')->get();
+        return view(
+            'backend.dashboard',
+            [
+                'posts' => $posts
+            ]
+        );
+    }
+
+    function comments()
+    {
+        $data =  Comment::orderBy('id', 'desc')->get();
+        return view(
+            'backend.comment.index',
+            [
+                'data' => $data
+            ]
+        );
+    }
+
+    public function delete_comment($id)
+    {
+        Comment::where('id', $id)->delete();
+        return redirect('admin/comment');
     }
 
     function logout()

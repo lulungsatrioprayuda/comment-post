@@ -41,6 +41,9 @@ Route::get('admin/post/{id}/delete', [PostController::class, 'destroy']);
 // settings
 Route::get('/admin/setting', [SettingController::class, 'index']);
 Route::post('/admin/setting', [SettingController::class, 'save_settings']);
+// comment
+Route::get('/admin/comment', [AdminController::class, 'comments']);
+Route::get('/admin/comment/delete/{id}', [AdminController::class, 'delete_comment']);
 
 Auth::routes();
 
