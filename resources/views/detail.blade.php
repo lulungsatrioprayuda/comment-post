@@ -15,9 +15,12 @@
             <div class="card-body">
                 {{$detail->detail}}
             </div>
+            <div class="card-footer pt-2">
+                <a href="#">#{{$detail->category->title}}</a>
+            </div>
         </div>
         @auth
-        <div class="card mb-5">
+        <div class="card mb-5 mt-2">
             <h5 class="card-header">Add more comment </h5>
             <div class="card-body">
                 <form method="post" action="{{url('save-comment/'. Str::slug($detail->title) .'/'. $detail->id)}}">
@@ -77,7 +80,8 @@
             <div class="list-group list-group-flush">
                 @if($popular_posts)
                 @foreach($popular_posts as $post)
-                <a href="#" class="list-group-item">{{$post->title}}</a>
+                <a href="#" class="list-group-item">{{$post->title}} <span
+                        class="badge badge-info">{{$detail->views}}</span></a>
                 @endforeach
                 @endif
             </div>

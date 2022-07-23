@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Comment;
@@ -27,6 +27,19 @@ class HomeController extends Controller
         return view(
             'detail',
             ['detail' => $detail]
+        );
+    }
+
+    function category(Request $request, $cat_slug, $cat_id)
+    {
+        $category = Category::find($cat_id);
+        $posts =  Post::where('cat_id', $cat_id)->orderBy('id', 'desc')->paginate(1);
+        return view(
+            'category',
+            [
+                'posts' => $posts,
+                'category' => $category
+            ]
         );
     }
 
