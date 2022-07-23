@@ -3,56 +3,30 @@
 @section('content')
 <div class="row">
     <div class="col-md-8 mb-5">
-        <h5>Add your post </h5>
+        <h5>Manage your post </h5>
         <div class="table-responsive">
-
-            @if($errors)
-            @foreach($errors->all() as $error)
-            <p class="text-danger">{{$error}}</p>
-            @endforeach
-            @endif
-
-            @if(Session::has('success'))
-            <p class="text-success">{{session('success')}}</p>
-            @endif
-
-            <form method="post" action="{{url('save-post-form')}}" enctype="multipart/form-data">
-                @csrf
-                <table class="table table-bordered">
+            <table class="table table-bordered">
+                <thead>
                     <tr>
+                        <th>#</th>
                         <th>Category</th>
-                        <td><select name="category" class="form-control">
-                                @foreach($cats as $cate)
-                                <option value="{{$cate->id}}">{{$cate->title}}</option>
-                                @endforeach
-                            </select></td>
+                        <th>Title</th>
+                        <th>Image</th>
+                        <th>Full</th>
                     </tr>
+                </thead>
+                <tbody>
+                    @foreach($data as $post)
                     <tr>
-                        <th>title</th>
-                        <td><input type="text" class="form-control" name="title"></td>
+                        <td>{{$post->id}}</td>
+                        <td>{{$post->category->title}}</td>
+                        <td>{{$post->title}}</td>
+                        <td><img src="{{ asset('imgs/thumb').'/'.$post->thumb }}" width="100" /></td>
+                        <td><img src="{{ asset('imgs/full').'/'.$post->full_img }}" width="100" /></td>
                     </tr>
-                    <th>Detail</th>
-                    <td><textarea name="detail" cols="30" rows="10" class="form-control"></textarea></td>
-                    </tr>
-                    <tr>
-                        <th>Tags</th>
-                        <td><textarea name="tags" cols="30" rows="10" class="form-control"></textarea></td>
-                    </tr>
-                    <tr>
-                        <th>Thumbnail</th>
-                        <td><input type="file" name="post_thumbnail" /></td>
-                    </tr>
-                    <tr>
-                        <th>Full Image</th>
-                        <td><input type="file" name="post_image" /></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <input type="submit" class="btn btn-primary" />
-                        </td>
-                    </tr>
-                </table>
-            </form>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -89,4 +63,9 @@
         </div>
     </div>
 </div>
+
+<link href="{{asset('backend')}}/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+<script src="{{asset('backend')}}/vendor/datatables/jquery.dataTables.js"></script>
+<script src="{{asset('backend')}}/vendor/datatables/dataTables.bootstrap4.js"></script>
+<script src="{{asset('backend')}}/js/demo/datatables-demo.js"></script>
 @endsection

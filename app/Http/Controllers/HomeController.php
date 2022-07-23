@@ -130,9 +130,9 @@ class HomeController extends Controller
 
     function manage_posts(Request $request)
     {
-        $posts = Post::where('user_id', $request->user()->id)->orderBy('id', 'desc')->get;
+        $posts = Post::where('user_id', $request->user()->id)->orderBy('id', 'desc')->get();
         return view('manage-posts', [
-            'posts' => $posts
+            'data' => $posts
         ]);
     }
 }

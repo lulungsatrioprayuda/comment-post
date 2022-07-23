@@ -53,8 +53,12 @@
         <div class="card mb-4">
             <h5 class="card-header">Popular Posts</h5>
             <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item">Post 1</a>
-                <a href="#" class="list-group-item">Post 2</a>
+                @if($popular_posts)
+                @foreach($popular_posts as $post)
+                <a href="#" class="list-group-item">{{$post->title}} <span
+                        class="badge badge-info">{{$detail->views}}</span></a>
+                @endforeach
+                @endif
             </div>
         </div>
     </div>
