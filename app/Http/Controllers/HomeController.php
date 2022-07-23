@@ -127,4 +127,12 @@ class HomeController extends Controller
 
         return redirect('save-post-form')->with('success', 'Post has been updated');
     }
+
+    function manage_posts(Request $request)
+    {
+        $posts = Post::where('user_id', $request->user()->id)->orderBy('id', 'desc')->get;
+        return view('manage-posts', [
+            'posts' => $posts
+        ]);
+    }
 }

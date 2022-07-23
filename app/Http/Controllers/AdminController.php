@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -64,6 +65,23 @@ class AdminController extends Controller
     {
         Comment::where('id', $id)->delete();
         return redirect('admin/comment');
+    }
+
+    function users()
+    {
+        $data =  User::orderBy('id', 'desc')->get();
+        return view(
+            'backend.user.index',
+            [
+                'data' => $data
+            ]
+        );
+    }
+
+    public function delete_user($id)
+    {
+        User::where('id', $id)->delete();
+        return redirect('admin/user');
     }
 
     function logout()
