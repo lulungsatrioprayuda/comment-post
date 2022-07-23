@@ -22,6 +22,7 @@ class HomeController extends Controller
 
     function detail(Request $request, $slug, $postId)
     {
+        Post::find($postId)->increment('views');
         $detail = Post::find($postId);
         return view(
             'detail',
