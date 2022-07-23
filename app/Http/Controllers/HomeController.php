@@ -30,6 +30,17 @@ class HomeController extends Controller
         );
     }
 
+    function all_category()
+    {
+        $categories = Category::orderBy('id', 'desc')->get();
+        return view(
+            'categories',
+            [
+                'categories' => $categories,
+            ]
+        );
+    }
+
     function category(Request $request, $cat_slug, $cat_id)
     {
         $category = Category::find($cat_id);
